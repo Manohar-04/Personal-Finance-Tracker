@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "personal-finance-tracker-fafb6",
+  "private_key_id": "a5cc317210738c8d1e443a8b6e4c0bb9baf7a072",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCbPO6zrYdB64On\n6nwAHsvZltg5FrAAN0GsbyVEy8JUa4E/2rJNHVsO7w+5m33yzxOqLEi9sa4lhgQZ\nMoh60OQrJWpdIJ0fQyQcsTRAWQXCNGsenLGlCcqzwokf/ljmDPaQv70xQ+WTNOP/\n9h//jyc15y4DDlaBDuRHCHYc3lmrvZSOH9CyJziYGiYfBju88uDIv4ZQq+LHn4AT\nZj6rRw1Ick33fEtVc2m09UPLuM/5cW7iLvfeLFwhvGdapm4iCCNVbRjjt6b7dnUt\nV326an57LjZUDK7UDjaICwd11/eJ3I7aIQxGSJ1H3w2hG7gTwQb/TA6K9QSnpu5o\n8YsyGvPnAgMBAAECggEAGmxFqPmpYxQGRceIsbCMPA4L4bO142OEXyhP7KTN//aI\nemjsHmoXvLP+NjZ8Op76luWQwBEFNkfYXL2YM2do3tswfod1lwOjmuqinS1J6KNp\ndD1xk0jWYsCC/JobYZTlRwAL4N3Qrry67i9jhOlF4EvoLgb7vF3fhyOujv1dv/hx\n+CoJfZWYLCZLK8j3d7wR17j9ECoIqp1LX5utpilRh78nXTGp2odISfBskdtwAa9j\nh/clJO6c9YGoV0Qedar4xXX3VWNp9040P5tTgjm55nXwaDHHkKeLTQbnyekVrSVR\nj9XqrbMFk3Inwjlt6cdVkDWkEkJzzLbhseAQf32tGQKBgQDKs8B0IUf75iU+XS9l\nY+96LpRgiSkcbDRjcgi5kvzOHVfEwf1lp2mO/QJAzzU44CBGtYXqwyOGoB1ZQFjw\n4SKgM9GDZ5jHoHpdWDWfkmxgCQt9QNiDBZ0AC43IMuXB2XNPaZ7GU1qENa8yYe6D\ncTjIq0fPCmxVKCU7igy09V2CqwKBgQDEDkimT5REY5jNXRahdNDIwuhS8K4D6lMt\nCpY+qsDm51drBciKYgbxqa5tZWRzeotZ/UcCUVC2wF+mSBlaydktqHDy4WzBIzbD\nCf6RrSOvIx/tGR7VcCQO4rNvTHkXsGNnBgkuQEa41WxYoiE+7zNG8dWniKVe8Si8\n1hY8/eCztQKBgGCe1ALHBm/9IQ2cD4aN303nPBTT7IO+1C3+4kfK17RL6lVAfs/g\nwAFHerZ3zo/AzcHGrwHbaGi4k6TCdmLDfeTNLnYrgHjPduRdspnQitYwGYjnywyR\nNWgbGccu87O2Oi/FUciJXOEeUdd7NNz0sDN+6Wi4ODFTRIQf5rSvLJanAoGAIHO8\n0sqZYDicMmIWPON5K8IXcqMkKsG+wtXdyMG67H2emrh6WW2geJ/9n14JIpRGPL8P\n4fJTyexN6NhGWiDPMh+PkqR9u/p4NhCRcsuV/Idz4WsnD21gipY73VBrOuCXk5YM\nLvu0uSOaq5Eqr6AofLXLB9A2j2CbvaYySCY964ECgYBuaaKoPwF8LzzMvlJeali6\nbnFdBh5jIAFLfsy5CaqXuVKOG3ID7sLoNLZwzIAGynHSUkeyyAMNBPTdM7JIkN5S\nNPH3a+0eO0b2mzsMcQlGci9Qsn7nNTr58hJmU0fSJwb+fdkbQkGxPZsHpbcdEaWO\nx5mm0D1boRGTUsLSzEAO/Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-kd74s@personal-finance-tracker-fafb6.iam.gserviceaccount.com",
+  "client_id": "110758208102704749963",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-kd74s%40personal-finance-tracker-fafb6.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
