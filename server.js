@@ -278,7 +278,6 @@ const path=require('path'); //Inbuilt package
 const bodyparser=require('body-parser')
 app.use(bodyparser.urlencoded({extended: true}))
 
-const passwordHash=require('password-hash')
 const bcrypt = require('bcrypt');
 
 const { initializeApp,cert} = require('firebase-admin/app');
