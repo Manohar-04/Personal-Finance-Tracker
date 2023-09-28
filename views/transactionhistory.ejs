@@ -98,22 +98,33 @@
     </table>
     <h3 class="total-amount">Total Amount: <%= Totalamount %></h3>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const deleteIcons = document.querySelectorAll(".delete-icon");
     
-            deleteIcons.forEach(icon=> {
-                icon.addEventListener("click", function() {
+            deleteIcons.forEach(icon => {
+                icon.addEventListener("click", function () {
                     const transactionId = icon.getAttribute("data-transaction-id");
-                    
-                    fetch(`/deleteTransaction/${transactionId}`, {
-                        method: 'DELETE'
-                    })
-                    
+
+                    const confirmed = confirm("Are you sure you want to delete this transaction?");
+                    if (confirmed) {
+                        fetch(`/deleteTransaction/${transactionId}`, {
+                            method: 'DELETE'
+                        })
+                        .then(response => {
+                            if (response.ok) {
+                               
+                            } else {
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
                 });
             });
         });
-        
     </script>
+    
     
     <% if (alertMessage) { %>
         <script>

@@ -52,7 +52,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quick analysis</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script>
+    <!-- Include Chart.js library -->
+    <script src="node_modules/chart.js/dist/chart.js"></script>
 </head>
 <body>
     <h1 id="food">Food: <%= foodamount %></h1>
@@ -60,8 +61,11 @@
     <h1 id="fee">College Fees: <%= feeamount %></h1>
     <h1 id="access">Accessories: <%= accessamount %></h1>
     <h1 id="others">Others: <%= otheramount %></h1>
-    <canvas id="expenseChar"></canvas>
-<script>
+    <canvas id="mychart"></canvas>
+    
+    <!-- Include your JavaScript code here -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
     const foodAmount = parseFloat(document.getElementById('food').textContent);
     const billsAmount = parseFloat(document.getElementById('bill').textContent);
     const accessoriesAmount = parseFloat(document.getElementById('access').textContent);
@@ -74,22 +78,31 @@
     const billsShare = (billsAmount / totalExpenses) * 100;
     const accessoriesShare = (accessoriesAmount / totalExpenses) * 100;
     const clgFeesShare = (clgFeesAmount / totalExpenses) * 100;
-    const othershare=(othersAmount/totalExpenses)*100;
+    const othershare = (othersAmount / totalExpenses) * 100;
 
-    const ctx = document.getElementById('expenseChar').getContext('2d');
+    let labels=['Food', 'Bills', 'Accessories', 'College Fees', 'Others']
+    let itemdata=[foodShare, billsShare, accessoriesShare, clgFeesShare, othershare]
 
-    const expenseChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: ['Food', 'Bills', 'Accessories', 'College Fees','others'],
+    const data={
+        labels: labels,
         datasets: [{
-            data: [foodShare, billsShare, accessoriesShare, clgFeesShare,othershare],
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50','black'],
-            borderWidth: 1
+            data: itemdata,
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#428af5'],
         }]
-        }
-    });
-</script>
+    };
+
+    const config={
+        type:'pie',
+        data:data
+    };
+
+    const chart = new Chart(
+        document.getElementById('mychart'),
+        config
+    );
+});
+
+    </script>
 </body>
 </html>
 >>>>>>> ce7ff93 (Initial commit)

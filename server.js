@@ -512,7 +512,7 @@ app.delete('/deleteTransaction/:transactionId', async (req, res) => {
         
         await db.collection('Transaction Details').doc(transactionId).delete();
         const alertMessage="Transaction Deleted Successfully";
-        // res.redirect(`/dashboard?alertMessage=${encodeURIComponent(alertMessage)}`)
+        res.redirect(`transactionhistory/?alertMessage=${encodeURIComponent(alertMessage)}`)
     } catch (error) {
         console.error('Error deleting transaction:', error);
         const response = { error: 'An error occurred while deleting the transaction' };
