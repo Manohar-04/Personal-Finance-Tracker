@@ -410,31 +410,33 @@ app.post('/addtransaction',async (req,res)=>{
 })
 
 
-app.post('/transactionhistory',async (req,res)=>{
-    try{
-    const from=req.body.fromdate;
-    const to=req.body.todate;
+app.post('/transactionhistory', async (req, res) => {
+    try {
+        const from = req.body.fromdate;
+        const to = req.body.todate;
+        const userEmail = req.body.email;
 
-    const userdocs=db.collection('User-info').doc(req.body.email);
-    const subdocs=userdocs.collection('Transaction Details');
-    const snap=await subdocs.where('Date','>=',from)
-                            .where('Date','<=',to)
-                            .get();
-    const transactions = [];
-    let Totalamount=0;
-    snap.forEach(doc=>{
-        const data=doc.data();
-        data.id=doc.id;
-        transactions.push(data);
-        Totalamount+=parseFloat(data.Amount);
-    })
-    const alertMessage=req.body.alertMessage;
-    res.render('transactionhistory', { transactions,Totalamount,alertMessage});                   
-    }catch{
+        const userdocs = db.collection('User-info').doc(userEmail);
+        const subdocs = userdocs.collection('Transaction Details');
+        const snap = await subdocs.where('Date', '>=', from)
+                                  .where('Date', '<=', to)
+                                  .get();
+        const transactions = [];
+        let Totalamount = 0;
+        snap.forEach(doc => {
+            const data = doc.data();
+            data.id = doc.id;
+            transactions.push(data);
+            Totalamount += parseFloat(data.Amount);
+        });
+        const alertMessage = req.body.alertMessage;
+        res.render('transactionhistory', { transactions, Totalamount, alertMessage, userEmail });                   
+    } catch (error) {
         const alertMessage = 'An error occurred while fetching transactions.';
-        res.redirect(`/dashboard?alertMessage=${encodeURIComponent(alertMessage)}`);
+        res.redirect(`/dashboard?alertMessage=${encodeURIComponent(alertMessage)}&email=${encodeURIComponent(req.body.email)}`);
     }                                                         
-})
+});
+
 
 app.post('/analysis',async(req,res)=>{
    try{
@@ -503,22 +505,49 @@ app.post('/analysis',async(req,res)=>{
     }
 })
 
-app.delete('/deleteTransaction/:transactionId', async (req, res) => {
-    
+app.delete('/deleteTransaction/:transactionId/:email', async (req, res) => {
     const transactionId = req.params.transactionId;
-    console.log( transactionId);
-    
+    const userEmail = req.params.email;
+
     try {
-        
-        await db.collection('Transaction Details').doc(transactionId).delete();
-        const alertMessage="Transaction Deleted Successfully";
-        res.redirect(`transactionhistory/?alertMessage=${encodeURIComponent(alertMessage)}`)
+        const userDocRef = db.collection('User-info').doc(userEmail);
+        const transactionDocRef = userDocRef.collection('Transaction Details').doc(transactionId);
+        await transactionDocRef.delete();
+        res.status(200).json({ message: "Transaction Deleted Successfully" });
     } catch (error) {
         console.error('Error deleting transaction:', error);
-        const response = { error: 'An error occurred while deleting the transaction' };
-        res.status(300).json(response);
+        res.status(500).json({ error: 'An error occurred while deleting the transaction' });
     }
 });
+
+app.put('/updateTransaction/:transactionId/:email', async (req, res) => {
+    const transactionId = req.params.transactionId;
+    const userEmail = req.params.email;
+    const { date, typeoftrans, description, amount } = req.body;
+
+    // Check for undefined fields and handle accordingly
+    if (date === undefined || typeoftrans === undefined || description === undefined || amount === undefined) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    try {
+        const userDocRef = db.collection('User-info').doc(userEmail);
+        const transactionDocRef = userDocRef.collection('Transaction Details').doc(transactionId);
+        await transactionDocRef.update({
+            Date: date,
+            TypeofTransaction: typeoftrans,
+            Description: description,
+            Amount: amount
+        });
+        res.status(200).json({ message: "Transaction Updated Successfully" });
+    } catch (error) {
+        console.error('Error updating transaction:', error);
+        res.status(500).json({ error: 'An error occurred while updating the transaction' });
+    }
+});
+
+
+
 
 
 
