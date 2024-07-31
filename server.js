@@ -4,6 +4,11 @@ const express=require('express');
 const app=express();
 const dotenv=require('dotenv');
 const path=require('path'); //Inbuilt package
+const cors = require('cors');
+
+// Middleware
+app.use(express.json()); // For parsing application/json
+app.use(cors()); // If your frontend and backend are on different origins
 
 // parse request to body parser
 const bodyparser=require('body-parser')
@@ -255,6 +260,7 @@ app.put('/updateTransaction/:transactionId/:email', async (req, res) => {
     const transactionId = req.params.transactionId;
     const userEmail = req.params.email;
     const { date, typeoftrans, description, amount } = req.body;
+    console.log(req.body)
 
     // Check for undefined fields and handle accordingly
     if (date === undefined || typeoftrans === undefined || description === undefined || amount === undefined) {
