@@ -1,12 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quick analysis</title>
+    <title>Expense Analysis</title>
     <!-- Include Chart.js library -->
-    <script src="node_modules/chart.js/dist/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        canvas {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
     <h1 id="food">Food: <%= foodamount %></h1>
@@ -19,42 +32,41 @@
     <!-- Include your JavaScript code here -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-    const foodAmount = parseFloat(document.getElementById('food').textContent);
-    const billsAmount = parseFloat(document.getElementById('bill').textContent);
-    const accessoriesAmount = parseFloat(document.getElementById('access').textContent);
-    const clgFeesAmount = parseFloat(document.getElementById('fee').textContent);
-    const othersAmount = parseFloat(document.getElementById('others').textContent);
+            const getElementText = (id) => parseFloat(document.getElementById(id).textContent.replace(/[^0-9.]/g, '')) || 0;
 
-    const totalExpenses = foodAmount + billsAmount + accessoriesAmount + clgFeesAmount + othersAmount;
+            const foodAmount = getElementText('food');
+            const billsAmount = getElementText('bill');
+            const accessoriesAmount = getElementText('access');
+            const clgFeesAmount = getElementText('fee');
+            const othersAmount = getElementText('others');
 
-    const foodShare = (foodAmount / totalExpenses) * 100;
-    const billsShare = (billsAmount / totalExpenses) * 100;
-    const accessoriesShare = (accessoriesAmount / totalExpenses) * 100;
-    const clgFeesShare = (clgFeesAmount / totalExpenses) * 100;
-    const othershare = (othersAmount / totalExpenses) * 100;
+            const totalExpenses = foodAmount + billsAmount + accessoriesAmount + clgFeesAmount + othersAmount;
 
-    let labels=['Food', 'Bills', 'Accessories', 'College Fees', 'Others']
-    let itemdata=[foodShare, billsShare, accessoriesShare, clgFeesShare, othershare]
+            const foodShare = (foodAmount / totalExpenses) * 100;
+            const billsShare = (billsAmount / totalExpenses) * 100;
+            const accessoriesShare = (accessoriesAmount / totalExpenses) * 100;
+            const clgFeesShare = (clgFeesAmount / totalExpenses) * 100;
+            const othershare = (othersAmount / totalExpenses) * 100;
 
-    const data={
-        labels: labels,
-        datasets: [{
-            data: itemdata,
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#428af5'],
-        }]
-    };
+            const labels = ['Food', 'Bills', 'Accessories', 'College Fees', 'Others'];
+            const itemdata = [foodShare, billsShare, accessoriesShare, clgFeesShare, othershare];
 
-    const config={
-        type:'pie',
-        data:data
-    };
+            const data = {
+                labels: labels,
+                datasets: [{
+                    data: itemdata,
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50', '#428af5'],
+                }]
+            };
 
-    const chart = new Chart(
-        document.getElementById('mychart'),
-        config
-    );
-});
+            const config = {
+                type: 'pie',
+                data: data
+            };
 
+            const ctx = document.getElementById('mychart').getContext('2d');
+            new Chart(ctx, config);
+        });
     </script>
 </body>
 </html>
